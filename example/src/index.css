@@ -1,5 +1,58 @@
-/* body {
+body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-} */
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+}
+
+.demo-panel {
+  border: 1px solid gainsboro;
+  border-radius: 6px;
+  padding: 20px;
+  margin: 20px;
+  flex-basis: 40%;
+}
+
+.section {
+  border-top: 1px solid gainsboro;
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-bottom: 10px;
+}
+
+.input-field {
+  margin-bottom: 20px;
+}
+
+.input-field p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.list {
+  padding: 0 20px;
+}
+
+.item {
+  margin-bottom: 5px;
+}
+
+.item--shouldRemove {
+  text-decoration: line-through;
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    flex-wrap: wrap;
+  }
+
+  .demo-panel {
+    flex-basis: 90%;
+  }
+}

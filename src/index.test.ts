@@ -1,29 +1,89 @@
-import { useMyHook } from './'
-import { renderHook, act } from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react-hooks";
+import {useCustomEffect} from './';
+import {useEffect, useState} from 'react';
 
-// mock timer using jest
-jest.useFakeTimers();
+describe('useCustomEffect', () => {
+  it('Effect consumer basic subscribe', () => {
+    const callbackMock = jest.fn();
 
-describe('useMyHook', () => {
-  it('updates every second', () => {
-    const { result } = renderHook(() => useMyHook());
+    const {result} = renderHook(() => useCustomEffect());
+    const [useEffectSubscribe, run] = result.current;
 
-    expect(result.current).toBe(0);
-
-    // Fast-forward 1sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+    renderHook(() => {
+      useEffectSubscribe(callbackMock);
     });
 
-    // Check after total 1 sec
-    expect(result.current).toBe(1);
-
-    // Fast-forward 1 more sec
-    act(() => {
-      jest.advanceTimersByTime(1000);
+    renderHook(() => {
+      useEffect(() => {
+        run();
+      }, []);
     });
 
-    // Check after total 2 sec
-    expect(result.current).toBe(2);
-  })
-})
+    expect(callbackMock).toHaveBeenCalled();
+  });
+
+  it('Effect consumer unsubscribe', () => {
+    const callbackMock = jest.fn();
+    const {result} = renderHook(() => useCustomEffect());
+    const [useEffectSubscribe, run] = result.current;
+
+    const effectConsumer = renderHook(() => {
+      useEffectSubscribe(callbackMock);
+    });
+
+    const effectProducer = renderHook(({effectTriggerProp}) => {
+      useEffect(() => {
+        run(effectTriggerProp);
+      }, [effectTriggerProp]);
+    }, {
+      initialProps: {
+        effectTriggerProp: 'did-mount',
+      },
+    });
+
+    expect(callbackMock).toHaveBeenCalledWith('did-mount');
+
+    effectProducer.rerender({effectTriggerProp: 'update-1'});
+
+    expect(callbackMock).toHaveBeenCalledWith('update-1');
+
+    effectConsumer.unmount();
+
+    callbackMock.mockClear();
+
+    effectProducer.rerender({effectTriggerProp: 'update-2'});
+
+    expect(callbackMock).not.toHaveBeenCalled();
+  });
+
+  it('Effect consumer with dependency', () => {
+    const {result} = renderHook(() => useCustomEffect());
+    const [useEffectSubscribe, run] = result.current;
+
+    const effectConsumer = renderHook(() => {
+      const [count, setCount] = useState(0);
+
+      useEffectSubscribe(() => {
+        setCount(count + 1);
+      }, [count]);
+
+      return count;
+    });
+
+    const effectProducer = renderHook(({effectTriggerProp}) => {
+      useEffect(() => {
+        run();
+      }, [effectTriggerProp]);
+    }, {
+      initialProps: {
+        effectTriggerProp: 'did-mount',
+      },
+    });
+
+    expect(effectConsumer.result.current).toBe(1);
+
+    effectProducer.rerender({effectTriggerProp: 'update-1'});
+
+    expect(effectConsumer.result.current).toBe(2);
+  });
+});
