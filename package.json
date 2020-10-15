@@ -1,6 +1,6 @@
 {
   "name": "use-custom-effect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React custom hook helper for building custom runtime effects",
   "author": "radospavlicevic",
   "license": "MIT",
