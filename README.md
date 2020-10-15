@@ -10,6 +10,10 @@
 npm install --save use-custom-effect
 ```
 
+## Demo
+
+[View demo app](https://radospavlicevic.github.io/use-custom-effect/)  
+
 ## API
 
 ```js
@@ -54,10 +58,10 @@ const App = () => {
   const [useEffectSubscribe, run] = useCustomEffect();
 
   return (
-    <>
+    <div>
       <EffectProducer run={run} effectTriggerProp='Initial value' />
       <EffectConsumer useEffectSubscribe={useEffectSubscribe} />
-    </>
+    </div>
   );
 };
 ```
@@ -147,10 +151,10 @@ const App = () => {
   const [useFetchEffect, run] = useCustomEffect();
 
   return (
-    <>
+    <div>
       <Fetcher runFetchEffect={run} />
       <Consumer useFetchEffect={useFetchEffect} />
-    </>
+    </div>
   );
 };
 ```
