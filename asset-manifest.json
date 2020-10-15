@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/use-custom-effect/static/css/main.c2e0a5f5.chunk.css",
+    "main.js": "/use-custom-effect/static/js/main.0831007a.chunk.js",
+    "main.js.map": "/use-custom-effect/static/js/main.0831007a.chunk.js.map",
+    "runtime-main.js": "/use-custom-effect/static/js/runtime-main.bfd30458.js",
+    "runtime-main.js.map": "/use-custom-effect/static/js/runtime-main.bfd30458.js.map",
+    "static/js/2.b892b0be.chunk.js": "/use-custom-effect/static/js/2.b892b0be.chunk.js",
+    "static/js/2.b892b0be.chunk.js.map": "/use-custom-effect/static/js/2.b892b0be.chunk.js.map",
+    "index.html": "/use-custom-effect/index.html",
+    "precache-manifest.695d82d612f855a4ca03e7c6aa1d655d.js": "/use-custom-effect/precache-manifest.695d82d612f855a4ca03e7c6aa1d655d.js",
+    "service-worker.js": "/use-custom-effect/service-worker.js",
+    "static/css/main.c2e0a5f5.chunk.css.map": "/use-custom-effect/static/css/main.c2e0a5f5.chunk.css.map",
+    "static/js/2.b892b0be.chunk.js.LICENSE.txt": "/use-custom-effect/static/js/2.b892b0be.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bfd30458.js",
+    "static/js/2.b892b0be.chunk.js",
+    "static/css/main.c2e0a5f5.chunk.css",
+    "static/js/main.0831007a.chunk.js"
+  ]
+}
