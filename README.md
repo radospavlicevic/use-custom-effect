@@ -1,13 +1,21 @@
 # use-custom-effect
 
-> React hook helper for building custom runtime effects
+> Simple observer implementation based on React effect hook api, intended for building custom runtime effects.
 
 [![NPM](https://img.shields.io/npm/v/use-custom-effect.svg)](https://www.npmjs.com/package/use-custom-effect) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
+**npm**
+
 ```bash
 npm install --save use-custom-effect
+```
+
+**yarn**
+
+```bash
+yarn add use-custom-effect
 ```
 
 ## Demo
